@@ -8,6 +8,8 @@ public class PlayerCharacter : MonoBehaviour
     public float runSpeed = 12;
     private float verticalDirection;
     private float horizontalDirection;
+    public bool GravityGun;
+    public GameObject DirectionChecker;
     public Rigidbody rigid;
     public GameObject cam;
     public GameObject Pickup;
@@ -21,6 +23,13 @@ public class PlayerCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GravityGun)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                ChangeGravity();
+            }
+        }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             verticalDirection = Input.GetAxis("Vertical") * runSpeed * Time.deltaTime;
@@ -67,5 +76,13 @@ public class PlayerCharacter : MonoBehaviour
             }
             Object.transform.rotation = Pickup.transform.rotation;
         }
+    }
+    void ChangeGravity()
+    {
+        RaycastHit hit;
+        Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit);
+        GameObject temp = Instantiate(DirectionChecker, hit.point + hit.normal * 0.0001f, Quaternion.LookRotation(hit.normal));
+        temp.GetComponent<GravityChange>().Main = this;
+        temp.GetComponent<GravityChange>().start();
     }
 }

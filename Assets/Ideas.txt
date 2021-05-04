@@ -1,4 +1,5 @@
-Puzzle game where you are limited by steps you take.
-Sort of a portal style games. 
-Time travel puzzles.
-
+Todo:
+Rework Walking
+Rework Gravity Changing
+Fixing Lighting
+Fix Camera

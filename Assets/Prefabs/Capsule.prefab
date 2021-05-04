@@ -160,6 +160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   runSpeed: 15
+  GravityGun: 1
+  DirectionChecker: {fileID: 0}
   rigid: {fileID: 6276038774988706204}
   cam: {fileID: 0}
   Pickup: {fileID: 6276038774868018934}
